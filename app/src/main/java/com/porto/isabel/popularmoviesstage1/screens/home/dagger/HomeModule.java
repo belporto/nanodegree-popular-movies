@@ -1,5 +1,6 @@
 package com.porto.isabel.popularmoviesstage1.screens.home.dagger;
 
+import com.porto.isabel.popularmoviesstage1.network.MovieDBApi;
 import com.porto.isabel.popularmoviesstage1.screens.home.HomeActivity;
 import com.porto.isabel.popularmoviesstage1.screens.home.HomeContract;
 import com.porto.isabel.popularmoviesstage1.screens.home.core.HomeInteractor;
@@ -22,7 +23,6 @@ public class HomeModule {
         mActivity = activity;
     }
 
-
     @Provides
     @HomeScope
     public HomeContract.ViewContract provideView() {
@@ -38,7 +38,7 @@ public class HomeModule {
 
     @Provides
     @HomeScope
-    public HomeContract.InteractorContract provideInteractor() {
-        return new HomeInteractor();
+    public HomeContract.InteractorContract provideInteractor(MovieDBApi movieDBApi) {
+        return new HomeInteractor(movieDBApi);
     }
 }

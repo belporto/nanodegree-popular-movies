@@ -4,19 +4,18 @@ import android.content.Context;
 
 import com.porto.isabel.popularmoviesstage1.network.MovieDBApi;
 
-import dagger.Component;
+import dagger.Module;
+import dagger.Provides;
 
 /**
  * Created by belporto on 11/06/2017.
  */
 
-@AppScope
-@Component(modules = {
-        AppModule.class, NetworkModule.class
-})
-public interface AppComponent {
+@Module
+public class NetworkModule {
 
-    Context context();
-
-    MovieDBApi movieDBApi();
+    @Provides
+    public MovieDBApi provideMovieDBApi(Context context) {
+        return new MovieDBApi(context);
+    }
 }
