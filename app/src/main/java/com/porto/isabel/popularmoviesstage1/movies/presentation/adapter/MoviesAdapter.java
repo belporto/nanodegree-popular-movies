@@ -1,6 +1,7 @@
 package com.porto.isabel.popularmoviesstage1.movies.presentation.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,8 +35,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
     @Override
     public void onBindViewHolder(MoviesAdapterViewHolder holder, int position) {
         Movie movie = mMovies.get(position);
-        //TODO: API KEY
-        String uri = "https://api.themoviedb.org/3" + movie.getPosterPath();
+        String  uri = "http://image.tmdb.org/t/p/w185" + movie.getPosterPath();
         Picasso.with(mContext).load(uri).into(holder.mPosterImageView);
     }
 
