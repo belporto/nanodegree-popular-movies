@@ -1,4 +1,4 @@
-package com.porto.isabel.popularmoviesstage1.screens.home;
+package com.porto.isabel.popularmoviesstage1.movies;
 
 import com.porto.isabel.popularmoviesstage1.model.moviedb.Movie;
 
@@ -10,7 +10,7 @@ import rx.Observable;
  * Created by belporto on 11/06/2017.
  */
 
-public interface HomeContract {
+public interface MoviesContract {
 
     interface PresenterContract {
 

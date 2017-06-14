@@ -1,4 +1,4 @@
-package com.porto.isabel.popularmoviesstage1.dagger;
+package com.porto.isabel.popularmoviesstage1.di;
 
 import android.content.Context;
 

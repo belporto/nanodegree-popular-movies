@@ -1,9 +1,7 @@
-package com.porto.isabel.popularmoviesstage1.dagger;
+package com.porto.isabel.popularmoviesstage1.di;
 
 import android.app.Application;
 import android.content.Context;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

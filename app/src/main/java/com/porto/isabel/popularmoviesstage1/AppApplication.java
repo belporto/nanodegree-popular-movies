@@ -2,9 +2,9 @@ package com.porto.isabel.popularmoviesstage1;
 
 import android.app.Application;
 
-import com.porto.isabel.popularmoviesstage1.dagger.AppComponent;
-import com.porto.isabel.popularmoviesstage1.dagger.AppModule;
-import com.porto.isabel.popularmoviesstage1.dagger.DaggerAppComponent;
+import com.porto.isabel.popularmoviesstage1.di.AppComponent;
+import com.porto.isabel.popularmoviesstage1.di.AppModule;
+import com.porto.isabel.popularmoviesstage1.di.DaggerAppComponent;
 
 /**
  * Created by belporto on 11/06/2017.

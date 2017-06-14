@@ -1,4 +1,4 @@
-package com.porto.isabel.popularmoviesstage1.screens.home;
+package com.porto.isabel.popularmoviesstage1.movies.presentation;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,27 +6,28 @@ import android.util.Log;
 
 import com.porto.isabel.popularmoviesstage1.AppApplication;
 import com.porto.isabel.popularmoviesstage1.R;
-import com.porto.isabel.popularmoviesstage1.dagger.AppComponent;
+import com.porto.isabel.popularmoviesstage1.di.AppComponent;
 import com.porto.isabel.popularmoviesstage1.model.moviedb.Movie;
-import com.porto.isabel.popularmoviesstage1.screens.home.core.DaggerHomeComponent;
-import com.porto.isabel.popularmoviesstage1.screens.home.dagger.HomeModule;
+import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
+import com.porto.isabel.popularmoviesstage1.movies.di.DaggerMoviesComponent;
+import com.porto.isabel.popularmoviesstage1.movies.di.MoviesModule;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class HomeActivity extends AppCompatActivity implements HomeContract.ViewContract {
+public class MoviesActivity extends AppCompatActivity implements MoviesContract.ViewContract {
 
     @Inject
-    HomeContract.PresenterContract mPresenter;
+    MoviesContract.PresenterContract mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         AppComponent appComponent = ((AppApplication) getApplication()).getAppComponent();
-        DaggerHomeComponent.builder().appComponent(appComponent).homeModule(
-                new HomeModule(this)).build().inject(this);
+        DaggerMoviesComponent.builder().appComponent(appComponent).moviesModule(
+                new MoviesModule(this)).build().inject(this);
 
         setContentView(R.layout.activity_home);
         mPresenter.onCreate();

@@ -1,8 +1,8 @@
-package com.porto.isabel.popularmoviesstage1.screens.home.core;
+package com.porto.isabel.popularmoviesstage1.movies.presentation;
 
 import android.util.Log;
 
-import com.porto.isabel.popularmoviesstage1.screens.home.HomeContract;
+import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
 
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -13,14 +13,14 @@ import rx.subscriptions.CompositeSubscription;
  * Created by belporto on 11/06/2017.
  */
 
-public class HomePresenter implements HomeContract.PresenterContract {
+public class MoviesPresenter implements MoviesContract.PresenterContract {
 
-    private final HomeContract.ViewContract mView;
-    private final HomeContract.InteractorContract mInteractor;
+    private final MoviesContract.ViewContract mView;
+    private final MoviesContract.InteractorContract mInteractor;
     private CompositeSubscription compositeSubscription;
 
 
-    public HomePresenter(HomeContract.ViewContract view, HomeContract.InteractorContract interactor) {
+    public MoviesPresenter(MoviesContract.ViewContract view, MoviesContract.InteractorContract interactor) {
         mView = view;
         mInteractor = interactor;
         compositeSubscription = new CompositeSubscription();

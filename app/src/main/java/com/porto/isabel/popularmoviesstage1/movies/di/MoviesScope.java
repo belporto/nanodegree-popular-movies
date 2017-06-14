@@ -1,4 +1,4 @@
-package com.porto.isabel.popularmoviesstage1.screens.home.dagger;
+package com.porto.isabel.popularmoviesstage1.movies.di;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -11,5 +11,5 @@ import javax.inject.Scope;
 
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface HomeScope {
+public @interface MoviesScope {
 }
