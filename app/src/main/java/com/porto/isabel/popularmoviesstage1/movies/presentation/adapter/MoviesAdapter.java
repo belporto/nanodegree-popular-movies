@@ -1,7 +1,6 @@
 package com.porto.isabel.popularmoviesstage1.movies.presentation.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,13 +28,19 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
     public MoviesAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movies_grid_item, parent, false);
+
+        int width = parent.getMeasuredWidth() / 3;
+        int height = width * 3/2;
+
+        view.setLayoutParams(new RecyclerView.LayoutParams(width, height));
+
         return new MoviesAdapterViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MoviesAdapterViewHolder holder, int position) {
         Movie movie = mMovies.get(position);
-        String  uri = "http://image.tmdb.org/t/p/w185" + movie.getPosterPath();
+        String uri = "http://image.tmdb.org/t/p/w185" + movie.getPosterPath();
         Picasso.with(mContext).load(uri).into(holder.mPosterImageView);
     }
 
