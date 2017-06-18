@@ -87,19 +87,37 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
     }
 
     @Override
-    public void showSortByOptions() {
-        BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
+    public void showSortByOptions(SortBy sortBy) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View sheetView = getLayoutInflater().inflate(R.layout.sort_by, null);
 
-        //TODO: show check
+
         View mostPopular = sheetView.findViewById(R.id.most_popular);
-        View topReated = sheetView.findViewById(R.id.top_rated);
+        View topRated = sheetView.findViewById(R.id.top_rated);
+        View mostPopularCheck = sheetView.findViewById(R.id.most_popular_check);
+        View topRatedCheck = sheetView.findViewById(R.id.top_rated_check);
 
-        mostPopular.setOnClickListener(v -> mPresenter.onSortOptionClicked(SortBy.MOST_POPULAR));
+        if (sortBy == SortBy.MOST_POPULAR) {
+            mostPopularCheck.setVisibility(View.VISIBLE);
+            topRatedCheck.setVisibility(View.INVISIBLE);
+        } else {
+            mostPopularCheck.setVisibility(View.INVISIBLE);
+            topRatedCheck.setVisibility(View.VISIBLE);
+        }
 
-        topReated.setOnClickListener(v -> mPresenter.onSortOptionClicked(SortBy.TOP_RATED));
-        mBottomSheetDialog.setContentView(sheetView);
-        mBottomSheetDialog.show();
+        mostPopular.setOnClickListener(v -> {
+            mPresenter.onSortOptionClicked(SortBy.MOST_POPULAR);
+            bottomSheetDialog.dismiss();
+        });
+
+        topRated.setOnClickListener(v ->
+        {
+            mPresenter.onSortOptionClicked(SortBy.TOP_RATED);
+            bottomSheetDialog.dismiss();
+        });
+
+        bottomSheetDialog.setContentView(sheetView);
+        bottomSheetDialog.show();
     }
 
     @Override

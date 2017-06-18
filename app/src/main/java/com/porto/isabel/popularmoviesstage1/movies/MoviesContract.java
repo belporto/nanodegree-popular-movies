@@ -32,7 +32,7 @@ public interface MoviesContract {
 
         void showError();
 
-        void showSortByOptions();
+        void showSortByOptions(SortBy sortBy);
     }
 
     interface InteractorContract {

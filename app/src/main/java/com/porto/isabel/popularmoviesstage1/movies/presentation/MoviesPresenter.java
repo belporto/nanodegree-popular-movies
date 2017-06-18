@@ -56,7 +56,7 @@ public class MoviesPresenter implements MoviesContract.PresenterContract {
 
     @Override
     public void onSortByClicked() {
-        mView.showSortByOptions();
+        mView.showSortByOptions(mInteractor.getSortBy());
     }
 
     @Override
