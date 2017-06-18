@@ -30,7 +30,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movies_grid_item, parent, false);
 
         int width = parent.getMeasuredWidth() / 3;
-        int height = width * 3/2;
+        int height = width * 3 / 2;
 
         view.setLayoutParams(new RecyclerView.LayoutParams(width, height));
 

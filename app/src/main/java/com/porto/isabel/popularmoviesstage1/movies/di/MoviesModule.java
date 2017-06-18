@@ -1,8 +1,8 @@
 package com.porto.isabel.popularmoviesstage1.movies.di;
 
 import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
-import com.porto.isabel.popularmoviesstage1.movies.presentation.MoviesActivity;
 import com.porto.isabel.popularmoviesstage1.movies.domain.MoviesInteractor;
+import com.porto.isabel.popularmoviesstage1.movies.presentation.MoviesActivity;
 import com.porto.isabel.popularmoviesstage1.movies.presentation.MoviesPresenter;
 import com.porto.isabel.popularmoviesstage1.network.MovieDBApi;
 
@@ -32,7 +32,7 @@ public class MoviesModule {
     @Provides
     @MoviesScope
     public MoviesContract.PresenterContract providePresenter(MoviesContract.ViewContract view,
-                                                             MoviesContract.InteractorContract interactor) {
+            MoviesContract.InteractorContract interactor) {
         return new MoviesPresenter(view, interactor);
     }
 

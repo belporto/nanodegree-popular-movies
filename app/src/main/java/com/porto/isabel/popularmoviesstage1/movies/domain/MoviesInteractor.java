@@ -1,9 +1,9 @@
 package com.porto.isabel.popularmoviesstage1.movies.domain;
 
 import com.porto.isabel.popularmoviesstage1.model.moviedb.Movie;
+import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
 import com.porto.isabel.popularmoviesstage1.network.MovieDBApi;
 import com.porto.isabel.popularmoviesstage1.network.MovieResult;
-import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
 
 import java.util.List;
 
