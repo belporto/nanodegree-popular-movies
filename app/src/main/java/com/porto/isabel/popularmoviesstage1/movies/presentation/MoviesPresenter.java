@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
 
+import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -32,9 +33,19 @@ public class MoviesPresenter implements MoviesContract.PresenterContract {
     }
 
     private Subscription subscribeGetPopularMovies() {
-        return mInteractor.getPopularMovies().observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io()).subscribe(mView::showMovies,
-                        throwable -> Log.e("TAG", "", throwable));
+        return Observable.just(null)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .doOnNext(aVoid -> mView.showProgress())
+                .observeOn(Schedulers.io())
+                .switchMap(aVoid -> mInteractor.getPopularMovies())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(mView::showMovies,
+                        throwable -> {
+                            Log.e("TAG", "", throwable);
+                            mView.showError();
+                        }
+
+                );
     }
 
     @Override

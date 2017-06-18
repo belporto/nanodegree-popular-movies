@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.porto.isabel.popularmoviesstage1.AppApplication;
 import com.porto.isabel.popularmoviesstage1.R;
@@ -27,6 +28,9 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
 
     private RecyclerView mRecyclerView;
     private MoviesAdapter mMoviesAdapter;
+    private View mErrorView;
+    private ProgressBar mProgressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
 
         //TODO: View injection
         mRecyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
+        mProgressBar = (ProgressBar) findViewById(R.id.movies_loading);
+        mErrorView = findViewById(R.id.movies_error);
 
         GridLayoutManager layoutManager
                 = new GridLayoutManager(this, NUMBER_OF_COLUMNS);
@@ -55,8 +61,24 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
 
     @Override
     public void showMovies(List<Movie> movies) {
-        Log.d("TAG", movies.toString());
         mMoviesAdapter.setData(movies);
+        mProgressBar.setVisibility(View.INVISIBLE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        mErrorView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showProgress() {
+        mProgressBar.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.INVISIBLE);
+        mErrorView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showError() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+        mRecyclerView.setVisibility(View.INVISIBLE);
+        mErrorView.setVisibility(View.VISIBLE);
     }
 
     @Override

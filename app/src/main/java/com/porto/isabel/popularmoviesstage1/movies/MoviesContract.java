@@ -22,6 +22,11 @@ public interface MoviesContract {
     interface ViewContract {
 
         void showMovies(List<Movie> movies);
+
+        void showProgress();
+
+        void showError();
+
     }
 
     interface InteractorContract {
