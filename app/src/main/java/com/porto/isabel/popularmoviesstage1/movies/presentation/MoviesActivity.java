@@ -1,9 +1,13 @@
 package com.porto.isabel.popularmoviesstage1.movies.presentation;
 
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -14,6 +18,7 @@ import com.porto.isabel.popularmoviesstage1.model.moviedb.Movie;
 import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
 import com.porto.isabel.popularmoviesstage1.movies.di.DaggerMoviesComponent;
 import com.porto.isabel.popularmoviesstage1.movies.di.MoviesModule;
+import com.porto.isabel.popularmoviesstage1.movies.domain.SortBy;
 import com.porto.isabel.popularmoviesstage1.movies.presentation.adapter.MoviesAdapter;
 
 import java.util.List;
@@ -82,8 +87,43 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
     }
 
     @Override
+    public void showSortByOptions() {
+        BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
+        View sheetView = getLayoutInflater().inflate(R.layout.sort_by, null);
+
+        //TODO: show check
+        View mostPopular = sheetView.findViewById(R.id.most_popular);
+        View topReated = sheetView.findViewById(R.id.top_rated);
+
+        mostPopular.setOnClickListener(v -> mPresenter.onSortOptionClicked(SortBy.MOST_POPULAR));
+
+        topReated.setOnClickListener(v -> mPresenter.onSortOptionClicked(SortBy.TOP_RATED));
+        mBottomSheetDialog.setContentView(sheetView);
+        mBottomSheetDialog.show();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.onDestroy();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.movies, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.sort_by) {
+            mPresenter.onSortByClicked();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

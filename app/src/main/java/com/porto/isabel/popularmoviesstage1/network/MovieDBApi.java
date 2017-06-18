@@ -43,6 +43,10 @@ public class MovieDBApi {
         return mService.getPopularMovies(getApiKey());
     }
 
+    public Observable<MovieResult> getTopRatedMovies() {
+        return mService.getTopRatedMovies(getApiKey());
+    }
+
     public String getApiKey() {
         String apiKey = "";
         try {

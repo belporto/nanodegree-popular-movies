@@ -1,6 +1,7 @@
 package com.porto.isabel.popularmoviesstage1.movies;
 
 import com.porto.isabel.popularmoviesstage1.model.moviedb.Movie;
+import com.porto.isabel.popularmoviesstage1.movies.domain.SortBy;
 
 import java.util.List;
 
@@ -17,6 +18,10 @@ public interface MoviesContract {
         void onCreate();
 
         void onDestroy();
+
+        void onSortByClicked();
+
+        void onSortOptionClicked(SortBy sortBy);
     }
 
     interface ViewContract {
@@ -27,10 +32,15 @@ public interface MoviesContract {
 
         void showError();
 
+        void showSortByOptions();
     }
 
     interface InteractorContract {
-        Observable<List<Movie>> getPopularMovies();
+        Observable<List<Movie>> getMovies();
+
+        void setSortBy(SortBy sortBy);
+
+        SortBy getSortBy();
     }
 
 }
