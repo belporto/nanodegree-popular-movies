@@ -1,5 +1,7 @@
 package com.porto.isabel.popularmoviesstage1.movies;
 
+import android.os.Bundle;
+
 import com.porto.isabel.popularmoviesstage1.model.moviedb.Movie;
 import com.porto.isabel.popularmoviesstage1.movies.domain.SortBy;
 
@@ -15,13 +17,15 @@ public interface MoviesContract {
 
     interface PresenterContract {
 
-        void onCreate();
+        void onCreate(Bundle savedInstanceState);
 
         void onDestroy();
 
         void onSortByClicked();
 
         void onSortOptionClicked(SortBy sortBy);
+
+        void onSaveInstanceState(Bundle outState);
     }
 
     interface ViewContract {

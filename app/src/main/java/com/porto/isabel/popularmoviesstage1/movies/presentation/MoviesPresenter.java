@@ -1,5 +1,6 @@
 package com.porto.isabel.popularmoviesstage1.movies.presentation;
 
+import android.os.Bundle;
 import android.util.Log;
 
 import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
@@ -18,6 +19,7 @@ import rx.subscriptions.CompositeSubscription;
 public class MoviesPresenter implements MoviesContract.PresenterContract {
 
     private static final String TAG = MoviesPresenter.class.getSimpleName();
+    private static final String BUNDLE_SORT_BY = "BUNDLE_SORT_BY";
     private final MoviesContract.ViewContract mView;
     private final MoviesContract.InteractorContract mInteractor;
     private CompositeSubscription compositeSubscription;
@@ -30,7 +32,13 @@ public class MoviesPresenter implements MoviesContract.PresenterContract {
     }
 
     @Override
-    public void onCreate() {
+    public void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            SortBy sortBy = (SortBy) savedInstanceState.get(BUNDLE_SORT_BY);
+            if (sortBy != null) {
+                mInteractor.setSortBy(sortBy);
+            }
+        }
         compositeSubscription.add(subscribeGetPopularMovies());
     }
 
@@ -65,5 +73,10 @@ public class MoviesPresenter implements MoviesContract.PresenterContract {
             mInteractor.setSortBy(sortBy);
             compositeSubscription.add(subscribeGetPopularMovies());
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(BUNDLE_SORT_BY, mInteractor.getSortBy());
     }
 }

@@ -46,9 +46,8 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
                 new MoviesModule(this)).build().inject(this);
 
         setContentView(R.layout.activity_movies);
-        mPresenter.onCreate();
+        mPresenter.onCreate(savedInstanceState);
 
-        //TODO: View injection
         mRecyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
         mProgressBar = (ProgressBar) findViewById(R.id.movies_loading);
         mErrorView = findViewById(R.id.movies_error);
@@ -61,6 +60,12 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         mMoviesAdapter = new MoviesAdapter();
         mRecyclerView.setAdapter(mMoviesAdapter);
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mPresenter.onSaveInstanceState(outState);
     }
 
 
@@ -91,7 +96,6 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View sheetView = getLayoutInflater().inflate(R.layout.sort_by, null);
 
-
         View mostPopular = sheetView.findViewById(R.id.most_popular);
         View topRated = sheetView.findViewById(R.id.top_rated);
         View mostPopularCheck = sheetView.findViewById(R.id.most_popular_check);
@@ -115,6 +119,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
             mPresenter.onSortOptionClicked(SortBy.TOP_RATED);
             bottomSheetDialog.dismiss();
         });
+
 
         bottomSheetDialog.setContentView(sheetView);
         bottomSheetDialog.show();
