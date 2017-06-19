@@ -25,7 +25,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class MoviesActivity extends AppCompatActivity implements MoviesContract.ViewContract {
+public class MoviesActivity extends AppCompatActivity implements MoviesContract.ViewContract, MoviesAdapter.MoviesAdapterOnClickHandler {
 
     private static final int NUMBER_OF_COLUMNS = 3;
     @Inject
@@ -57,7 +57,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
 
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mMoviesAdapter = new MoviesAdapter();
+        mMoviesAdapter = new MoviesAdapter(this);
         mRecyclerView.setAdapter(mMoviesAdapter);
 
     }
@@ -148,5 +148,10 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(Movie movie) {
+        mPresenter.onMovieClicked(movie);
     }
 }

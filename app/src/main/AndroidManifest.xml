@@ -23,6 +23,10 @@
         <meta-data
             android:name="MOVIES_DB_KEY"
             android:value="@string/movie_db_api_key" />
+
+        <activity
+            android:name=".details.presentation.DetailsActivity"
+            android:label="@string/title_activity_details" />
     </application>
 
 </manifest>

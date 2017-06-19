@@ -4,6 +4,7 @@ import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
 import com.porto.isabel.popularmoviesstage1.movies.domain.MoviesInteractor;
 import com.porto.isabel.popularmoviesstage1.movies.presentation.MoviesActivity;
 import com.porto.isabel.popularmoviesstage1.movies.presentation.MoviesPresenter;
+import com.porto.isabel.popularmoviesstage1.movies.presentation.MoviesRouter;
 import com.porto.isabel.popularmoviesstage1.network.MovieDBApi;
 
 import dagger.Module;
@@ -32,8 +33,8 @@ public class MoviesModule {
     @Provides
     @MoviesScope
     public MoviesContract.PresenterContract providePresenter(MoviesContract.ViewContract view,
-            MoviesContract.InteractorContract interactor) {
-        return new MoviesPresenter(view, interactor);
+            MoviesContract.InteractorContract interactor, MoviesContract.RouterContract router) {
+        return new MoviesPresenter(view, interactor, router);
     }
 
     @Provides
@@ -41,4 +42,11 @@ public class MoviesModule {
     public MoviesContract.InteractorContract provideInteractor(MovieDBApi movieDBApi) {
         return new MoviesInteractor(movieDBApi);
     }
+
+    @Provides
+    @MoviesScope
+    public MoviesContract.RouterContract provideRouter() {
+        return new MoviesRouter(mActivity);
+    }
+
 }

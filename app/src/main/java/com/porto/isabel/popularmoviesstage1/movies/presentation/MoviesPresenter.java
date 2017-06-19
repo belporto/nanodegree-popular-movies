@@ -3,6 +3,7 @@ package com.porto.isabel.popularmoviesstage1.movies.presentation;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.porto.isabel.popularmoviesstage1.model.moviedb.Movie;
 import com.porto.isabel.popularmoviesstage1.movies.MoviesContract;
 import com.porto.isabel.popularmoviesstage1.movies.domain.SortBy;
 
@@ -22,12 +23,14 @@ public class MoviesPresenter implements MoviesContract.PresenterContract {
     private static final String BUNDLE_SORT_BY = "BUNDLE_SORT_BY";
     private final MoviesContract.ViewContract mView;
     private final MoviesContract.InteractorContract mInteractor;
+    private final MoviesContract.RouterContract mRouter;
     private CompositeSubscription compositeSubscription;
 
 
-    public MoviesPresenter(MoviesContract.ViewContract view, MoviesContract.InteractorContract interactor) {
+    public MoviesPresenter(MoviesContract.ViewContract view, MoviesContract.InteractorContract interactor, MoviesContract.RouterContract router) {
         mView = view;
         mInteractor = interactor;
+        mRouter = router;
         compositeSubscription = new CompositeSubscription();
     }
 
@@ -78,5 +81,10 @@ public class MoviesPresenter implements MoviesContract.PresenterContract {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(BUNDLE_SORT_BY, mInteractor.getSortBy());
+    }
+
+    @Override
+    public void onMovieClicked(Movie movie) {
+        mRouter.showDetails(movie);
     }
 }

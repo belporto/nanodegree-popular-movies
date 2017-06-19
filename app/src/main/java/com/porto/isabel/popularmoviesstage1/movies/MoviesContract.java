@@ -26,6 +26,8 @@ public interface MoviesContract {
         void onSortOptionClicked(SortBy sortBy);
 
         void onSaveInstanceState(Bundle outState);
+
+        void onMovieClicked(Movie movie);
     }
 
     interface ViewContract {
@@ -47,4 +49,7 @@ public interface MoviesContract {
         SortBy getSortBy();
     }
 
+    interface RouterContract {
+        void showDetails(Movie movie);
+    }
 }
