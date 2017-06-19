@@ -5,6 +5,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,6 +36,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
     private MoviesAdapter mMoviesAdapter;
     private View mErrorView;
     private ProgressBar mProgressBar;
+    private Toolbar mToolbar;
 
 
     @Override
@@ -47,6 +49,9 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
 
         setContentView(R.layout.activity_movies);
         mPresenter.onCreate(savedInstanceState);
+
+        mToolbar = (Toolbar) findViewById(R.id.movies_toolbar);
+        setSupportActionBar(mToolbar);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
         mProgressBar = (ProgressBar) findViewById(R.id.movies_loading);
