@@ -42,13 +42,17 @@ public class MoviesPresenter implements MoviesContract.PresenterContract {
                 mInteractor.setSortBy(sortBy);
             }
         }
-        compositeSubscription.add(subscribeGetPopularMovies());
+        compositeSubscription.add(subscribeGetPopularMovies(false));
     }
 
-    private Subscription subscribeGetPopularMovies() {
+    private Subscription subscribeGetPopularMovies(boolean onRefresh) {
         return Observable.just(null)
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .doOnNext(aVoid -> mView.showProgress())
+                .doOnNext(aVoid -> {
+                    if (!onRefresh) {
+                        mView.showProgress();
+                    }
+                })
                 .observeOn(Schedulers.io())
                 .switchMap(aVoid -> mInteractor.getMovies())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -74,7 +78,7 @@ public class MoviesPresenter implements MoviesContract.PresenterContract {
     public void onSortOptionClicked(SortBy sortBy) {
         if (mInteractor.getSortBy() != sortBy) {
             mInteractor.setSortBy(sortBy);
-            compositeSubscription.add(subscribeGetPopularMovies());
+            compositeSubscription.add(subscribeGetPopularMovies(false));
         }
     }
 
@@ -86,5 +90,10 @@ public class MoviesPresenter implements MoviesContract.PresenterContract {
     @Override
     public void onMovieClicked(Movie movie) {
         mRouter.showDetails(movie);
+    }
+
+    @Override
+    public void onRefresh() {
+        compositeSubscription.add(subscribeGetPopularMovies(true));
     }
 }

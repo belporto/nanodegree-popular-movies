@@ -28,6 +28,8 @@ public interface MoviesContract {
         void onSaveInstanceState(Bundle outState);
 
         void onMovieClicked(Movie movie);
+
+        void onRefresh();
     }
 
     interface ViewContract {

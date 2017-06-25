@@ -2,6 +2,7 @@ package com.porto.isabel.popularmovies.movies.presentation;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
     private View mErrorView;
     private ProgressBar mProgressBar;
     private Toolbar mToolbar;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     @Override
@@ -56,6 +58,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         mRecyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
         mProgressBar = (ProgressBar) findViewById(R.id.movies_loading);
         mErrorView = findViewById(R.id.movies_error);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.movies_swipe_refresh);
 
         GridLayoutManager layoutManager
                 = new GridLayoutManager(this, NUMBER_OF_COLUMNS);
@@ -64,6 +67,13 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         mRecyclerView.setHasFixedSize(true);
         mMoviesAdapter = new MoviesAdapter(this);
         mRecyclerView.setAdapter(mMoviesAdapter);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.onRefresh();
+            }
+        });
+
 
     }
 
@@ -80,6 +90,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         mProgressBar.setVisibility(View.INVISIBLE);
         mRecyclerView.setVisibility(View.VISIBLE);
         mErrorView.setVisibility(View.INVISIBLE);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -94,6 +105,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         mProgressBar.setVisibility(View.INVISIBLE);
         mRecyclerView.setVisibility(View.INVISIBLE);
         mErrorView.setVisibility(View.VISIBLE);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
