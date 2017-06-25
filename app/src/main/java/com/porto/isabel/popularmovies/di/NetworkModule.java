@@ -7,10 +7,6 @@ import com.porto.isabel.popularmovies.network.MovieDBApi;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by belporto on 11/06/2017.
- */
-
 @Module
 public class NetworkModule {
 

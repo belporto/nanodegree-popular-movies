@@ -9,10 +9,6 @@ import java.util.List;
 
 import rx.Observable;
 
-/**
- * Created by belporto on 11/06/2017.
- */
-
 public class MoviesInteractor implements MoviesContract.InteractorContract {
 
 

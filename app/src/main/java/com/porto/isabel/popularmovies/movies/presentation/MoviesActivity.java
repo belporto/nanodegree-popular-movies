@@ -37,7 +37,6 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
     private MoviesAdapter mMoviesAdapter;
     private View mErrorView;
     private ProgressBar mProgressBar;
-    private Toolbar mToolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
@@ -52,8 +51,8 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         setContentView(R.layout.activity_movies);
         mPresenter.onCreate(savedInstanceState);
 
-        mToolbar = (Toolbar) findViewById(R.id.movies_toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.movies_toolbar);
+        setSupportActionBar(toolbar);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
         mProgressBar = (ProgressBar) findViewById(R.id.movies_loading);
@@ -67,12 +66,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         mRecyclerView.setHasFixedSize(true);
         mMoviesAdapter = new MoviesAdapter(this);
         mRecyclerView.setAdapter(mMoviesAdapter);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPresenter.onRefresh();
-            }
-        });
+        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.onRefresh());
 
 
     }

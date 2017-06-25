@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * Created by belporto on 14/06/2017.
- */
-
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdapterViewHolder> {
 
     private List<Movie> mMovies = new ArrayList<>();

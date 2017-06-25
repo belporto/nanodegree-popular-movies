@@ -12,10 +12,6 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
-/**
- * Created by belporto on 11/06/2017.
- */
-
 public class MovieDBApi {
 
     private MovieDBService mService;

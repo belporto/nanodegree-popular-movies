@@ -3,10 +3,6 @@ package com.porto.isabel.popularmovies.details.domain;
 import com.porto.isabel.popularmovies.details.DetailsContract;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 
-/**
- * Created by belporto on 25/06/2017.
- */
-
 public class DetailsInteractor implements DetailsContract.InteractorContract {
 
 

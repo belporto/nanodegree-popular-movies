@@ -5,4 +5,8 @@
     <string name="most_popular">Most popular</string>
     <string name="top_rated">Top rated</string>
     <string name="title_activity_details">DetailsActivity</string>
+    <string name="backdrop_description">Backdrop Image</string>
+    <string name="error_description">Error Image</string>
+    <string name="poster_description">Poster Image</string>
+    <string name="check_description">Check Image</string>
 </resources>

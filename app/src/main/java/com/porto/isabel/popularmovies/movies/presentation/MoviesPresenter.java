@@ -13,10 +13,6 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-/**
- * Created by belporto on 11/06/2017.
- */
-
 public class MoviesPresenter implements MoviesContract.PresenterContract {
 
     private static final String TAG = MoviesPresenter.class.getSimpleName();

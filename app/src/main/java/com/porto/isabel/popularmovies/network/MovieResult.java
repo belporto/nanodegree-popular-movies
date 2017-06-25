@@ -6,10 +6,6 @@ import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by belporto on 11/06/2017.
- */
-
 public class MovieResult implements Serializable {
 
     @SerializedName("page")

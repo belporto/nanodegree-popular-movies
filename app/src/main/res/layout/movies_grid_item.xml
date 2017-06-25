@@ -6,4 +6,5 @@
     android:padding="2dp"
     android:layout_height="wrap_content"
     android:scaleType="fitXY"
-    tools:background="@color/colorPrimary" />
+    tools:background="@color/primary"
+    android:contentDescription="@string/poster_description" />

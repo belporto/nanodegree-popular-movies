@@ -29,7 +29,6 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     private TextView mReleaseDateTextView;
     private TextView mSynopsisTextView;
     private RatingBar mUserRatingBar;
-    private Toolbar mToolbar;
     private CollapsingToolbarLayout collapsingToolbar;
 
     @Override
@@ -43,9 +42,9 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
                 new DetailsModule(this, movie)).build().inject(this);
         setContentView(R.layout.activity_details);
 
-        mToolbar = (Toolbar) findViewById(R.id.details_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.details_toolbar);
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.details_collapsing_toolbar);
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
 
         mBackDropImageView = (ImageView) findViewById(R.id.details_backdrop);
         mReleaseDateTextView = (TextView) findViewById(R.id.details_release_date);

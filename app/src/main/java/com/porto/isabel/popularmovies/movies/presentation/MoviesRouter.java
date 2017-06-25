@@ -7,10 +7,6 @@ import com.porto.isabel.popularmovies.details.presentation.DetailsActivity;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.movies.MoviesContract;
 
-/**
- * Created by belporto on 19/06/2017.
- */
-
 public class MoviesRouter implements MoviesContract.RouterContract {
 
     private final Activity mActivity;

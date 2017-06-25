@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by belporto on 11/06/2017.
- */
-
 public class Movie implements Serializable {
 
     @SerializedName("poster_path")

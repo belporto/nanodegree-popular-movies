@@ -9,10 +9,6 @@ import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by belporto on 25/06/2017.
- */
-
 @DetailsScope
 @Module
 public class DetailsModule {
