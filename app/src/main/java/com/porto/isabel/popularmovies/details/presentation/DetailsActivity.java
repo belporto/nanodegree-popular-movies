@@ -62,7 +62,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
 
         mSynopsisTextView.setText(movie.getOverview());
         mReleaseDateTextView.setText(movie.getReleaseDate());
-        mUserRatingBar.setRating(movie.getVoteAverage().floatValue()/2);
+        mUserRatingBar.setRating(movie.getVoteAverage().floatValue() / 2);
         collapsingToolbar.setTitle(movie.getTitle());
     }
 }
