@@ -26,7 +26,12 @@
 
         <activity
             android:name=".details.presentation.DetailsActivity"
-            android:label="@string/title_activity_details" />
+            android:label="@string/title_activity_details"
+            android:parentActivityName=".movies.presentation.MoviesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".movies.presentation.MoviesActivity" />
+        </activity>
     </application>
 
 </manifest>
