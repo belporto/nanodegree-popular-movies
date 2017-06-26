@@ -20,13 +20,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
     private List<Movie> mMovies = new ArrayList<>();
     private Context mContext;
     private MoviesAdapterOnClickHandler mClickHandler;
+    private int mNoOfColumns;
 
     public interface MoviesAdapterOnClickHandler {
         void onClick(Movie movie);
     }
 
-    public MoviesAdapter(MoviesAdapterOnClickHandler clickHandler) {
+    public MoviesAdapter(int noOfColumns, MoviesAdapterOnClickHandler clickHandler) {
         mClickHandler = clickHandler;
+        mNoOfColumns = noOfColumns;
     }
 
 
@@ -35,7 +37,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
         mContext = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movies_grid_item, parent, false);
 
-        int width = parent.getMeasuredWidth() / 3;
+        int width = parent.getMeasuredWidth() / mNoOfColumns;
         int height = width * 3 / 2;
 
         view.setLayoutParams(new RecyclerView.LayoutParams(width, height));

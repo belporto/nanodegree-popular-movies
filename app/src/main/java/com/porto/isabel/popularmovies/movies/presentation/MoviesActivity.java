@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -59,12 +60,13 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         mErrorView = findViewById(R.id.movies_error);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.movies_swipe_refresh);
 
+        int noOfColumns = calculateNoOfColumns();
         GridLayoutManager layoutManager
-                = new GridLayoutManager(this, NUMBER_OF_COLUMNS);
+                = new GridLayoutManager(this, noOfColumns);
 
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mMoviesAdapter = new MoviesAdapter(this);
+        mMoviesAdapter = new MoviesAdapter(noOfColumns, this);
         mRecyclerView.setAdapter(mMoviesAdapter);
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.onRefresh());
 
@@ -164,5 +166,12 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
     @Override
     public void onClick(Movie movie) {
         mPresenter.onMovieClicked(movie);
+    }
+
+    private int calculateNoOfColumns() {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        int scalingFactor = 120;
+        return (int) (dpWidth / scalingFactor);
     }
 }
