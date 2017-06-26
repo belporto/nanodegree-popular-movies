@@ -35,7 +35,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Movie movie = (Movie) getIntent().getSerializableExtra(EXTRA_MOVIE);
+        Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
 
         AppComponent appComponent = ((AppApplication) getApplication()).getAppComponent();
         DaggerDetailsComponent.builder().appComponent(appComponent).detailsModule(
