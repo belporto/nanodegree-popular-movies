@@ -43,6 +43,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".screens.details.presentation.DetailsActivity" />
         </activity>
+
+        <provider
+            android:name=".repository.MoviesProvider"
+            android:authorities="com.porto.isabel.popularmovies"
+            android:exported="false" />
     </application>
 
 </manifest>
