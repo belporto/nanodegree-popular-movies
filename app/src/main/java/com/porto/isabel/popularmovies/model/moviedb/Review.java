@@ -19,6 +19,13 @@ public class Review implements Parcelable {
     @SerializedName("url")
     private String url;
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getContent() {
+        return content;
+    }
 
     @Override
     public int describeContents() {
