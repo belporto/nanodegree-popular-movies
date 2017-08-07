@@ -1,6 +1,6 @@
-package com.porto.isabel.popularmovies.details;
+package com.porto.isabel.popularmovies.screens.details;
 
-import com.porto.isabel.popularmovies.details.domain.ScreenContent;
+import com.porto.isabel.popularmovies.screens.details.domain.ScreenContent;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.model.moviedb.Video;
 import com.porto.isabel.popularmovies.network.ReviewResult;

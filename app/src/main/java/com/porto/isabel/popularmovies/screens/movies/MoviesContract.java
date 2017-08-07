@@ -1,9 +1,9 @@
-package com.porto.isabel.popularmovies.movies;
+package com.porto.isabel.popularmovies.screens.movies;
 
 import android.os.Bundle;
 
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
-import com.porto.isabel.popularmovies.movies.domain.SortBy;
+import com.porto.isabel.popularmovies.screens.movies.domain.SortBy;
 
 import java.util.List;
 

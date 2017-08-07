@@ -1,4 +1,4 @@
-package com.porto.isabel.popularmovies.details.domain;
+package com.porto.isabel.popularmovies.screens.details.domain;
 
 
 import android.os.Parcel;

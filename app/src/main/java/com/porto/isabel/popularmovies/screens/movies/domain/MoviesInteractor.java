@@ -1,7 +1,7 @@
-package com.porto.isabel.popularmovies.movies.domain;
+package com.porto.isabel.popularmovies.screens.movies.domain;
 
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
-import com.porto.isabel.popularmovies.movies.MoviesContract;
+import com.porto.isabel.popularmovies.screens.movies.MoviesContract;
 import com.porto.isabel.popularmovies.network.MovieDBApi;
 import com.porto.isabel.popularmovies.network.MovieResult;
 

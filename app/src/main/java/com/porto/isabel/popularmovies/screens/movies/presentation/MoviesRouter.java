@@ -1,11 +1,11 @@
-package com.porto.isabel.popularmovies.movies.presentation;
+package com.porto.isabel.popularmovies.screens.movies.presentation;
 
 import android.app.Activity;
 import android.content.Intent;
 
-import com.porto.isabel.popularmovies.details.presentation.DetailsActivity;
+import com.porto.isabel.popularmovies.screens.details.presentation.DetailsActivity;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
-import com.porto.isabel.popularmovies.movies.MoviesContract;
+import com.porto.isabel.popularmovies.screens.movies.MoviesContract;
 
 public class MoviesRouter implements MoviesContract.RouterContract {
 

@@ -1,4 +1,4 @@
-package com.porto.isabel.popularmovies.details.presentation;
+package com.porto.isabel.popularmovies.screens.details.presentation;
 
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import com.porto.isabel.popularmovies.AppApplication;
 import com.porto.isabel.popularmovies.R;
-import com.porto.isabel.popularmovies.details.DetailsContract;
+import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 import com.porto.isabel.popularmovies.details.di.DaggerDetailsComponent;
-import com.porto.isabel.popularmovies.details.di.DetailsModule;
+import com.porto.isabel.popularmovies.screens.details.di.DetailsModule;
 import com.porto.isabel.popularmovies.di.AppComponent;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.squareup.picasso.Picasso;

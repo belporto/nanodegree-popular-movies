@@ -1,7 +1,7 @@
-package com.porto.isabel.popularmovies.movies.di;
+package com.porto.isabel.popularmovies.screens.movies.di;
 
 import com.porto.isabel.popularmovies.di.AppComponent;
-import com.porto.isabel.popularmovies.movies.presentation.MoviesActivity;
+import com.porto.isabel.popularmovies.screens.movies.presentation.MoviesActivity;
 
 import dagger.Component;
 

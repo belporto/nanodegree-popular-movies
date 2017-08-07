@@ -1,10 +1,10 @@
-package com.porto.isabel.popularmovies.details.di;
+package com.porto.isabel.popularmovies.screens.details.di;
 
-import com.porto.isabel.popularmovies.details.DetailsContract;
-import com.porto.isabel.popularmovies.details.domain.DetailsInteractor;
-import com.porto.isabel.popularmovies.details.presentation.DetailsActivity;
-import com.porto.isabel.popularmovies.details.presentation.DetailsPresenter;
-import com.porto.isabel.popularmovies.details.presentation.DetailsRouter;
+import com.porto.isabel.popularmovies.screens.details.DetailsContract;
+import com.porto.isabel.popularmovies.screens.details.domain.DetailsInteractor;
+import com.porto.isabel.popularmovies.screens.details.presentation.DetailsActivity;
+import com.porto.isabel.popularmovies.screens.details.presentation.DetailsPresenter;
+import com.porto.isabel.popularmovies.screens.details.presentation.DetailsRouter;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.network.MovieDBApi;
 

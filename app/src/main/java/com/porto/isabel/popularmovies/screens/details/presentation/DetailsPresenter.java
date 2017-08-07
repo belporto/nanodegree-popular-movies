@@ -1,6 +1,6 @@
-package com.porto.isabel.popularmovies.details.presentation;
+package com.porto.isabel.popularmovies.screens.details.presentation;
 
-import com.porto.isabel.popularmovies.details.DetailsContract;
+import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 
 import rx.Subscription;

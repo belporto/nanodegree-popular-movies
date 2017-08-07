@@ -1,10 +1,10 @@
-package com.porto.isabel.popularmovies.movies.di;
+package com.porto.isabel.popularmovies.screens.movies.di;
 
-import com.porto.isabel.popularmovies.movies.MoviesContract;
-import com.porto.isabel.popularmovies.movies.domain.MoviesInteractor;
-import com.porto.isabel.popularmovies.movies.presentation.MoviesActivity;
-import com.porto.isabel.popularmovies.movies.presentation.MoviesPresenter;
-import com.porto.isabel.popularmovies.movies.presentation.MoviesRouter;
+import com.porto.isabel.popularmovies.screens.movies.MoviesContract;
+import com.porto.isabel.popularmovies.screens.movies.domain.MoviesInteractor;
+import com.porto.isabel.popularmovies.screens.movies.presentation.MoviesActivity;
+import com.porto.isabel.popularmovies.screens.movies.presentation.MoviesPresenter;
+import com.porto.isabel.popularmovies.screens.movies.presentation.MoviesRouter;
 import com.porto.isabel.popularmovies.network.MovieDBApi;
 
 import dagger.Module;

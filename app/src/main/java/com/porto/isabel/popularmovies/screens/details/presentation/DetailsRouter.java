@@ -1,11 +1,11 @@
-package com.porto.isabel.popularmovies.details.presentation;
+package com.porto.isabel.popularmovies.screens.details.presentation;
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.porto.isabel.popularmovies.details.DetailsContract;
+import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 import com.porto.isabel.popularmovies.network.ReviewResult;
 
 public class DetailsRouter implements DetailsContract.Router {

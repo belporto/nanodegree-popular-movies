@@ -1,4 +1,4 @@
-package com.porto.isabel.popularmovies.movies.presentation.adapter;
+package com.porto.isabel.popularmovies.screens.movies.presentation.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
