@@ -16,6 +16,10 @@ public interface DetailsContract {
         void onPlayTrailerClicked();
 
         void onShowReviewClicked();
+
+        void onFavouriteClicked();
+
+        void onCreateMenu();
     }
 
     interface ViewContract {
@@ -25,6 +29,8 @@ public interface DetailsContract {
         void setReviewSize(String size);
 
         void showLoading();
+
+        void setFavourite(boolean favourite);
     }
 
     interface InteractorContract {
@@ -36,6 +42,11 @@ public interface DetailsContract {
         Video getTrailer();
 
         ReviewResult getReview();
+
+        //TODO: content provider
+        void setFavourite();
+
+        boolean isFavourite();
     }
 
     interface Router {

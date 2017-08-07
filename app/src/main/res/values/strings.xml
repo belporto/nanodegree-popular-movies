@@ -2,6 +2,7 @@
     <string name="app_name">Popular Movies</string>
     <string name="error_message">An error has occurred trying to retrieve the list of movies. Please check your internet connection or try again later.</string>
     <string name="sort_by">Sort by</string>
+    <string name="add_fav">Favourite</string>
     <string name="most_popular">Most popular</string>
     <string name="top_rated">Top rated</string>
     <string name="title_activity_details">DetailsActivity</string>

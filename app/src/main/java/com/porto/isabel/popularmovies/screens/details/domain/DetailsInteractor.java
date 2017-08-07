@@ -1,11 +1,11 @@
 package com.porto.isabel.popularmovies.screens.details.domain;
 
-import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.model.moviedb.Video;
 import com.porto.isabel.popularmovies.network.MovieDBApi;
 import com.porto.isabel.popularmovies.network.ReviewResult;
 import com.porto.isabel.popularmovies.network.VideosResult;
+import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 
 import java.util.List;
 
@@ -18,7 +18,8 @@ public class DetailsInteractor implements DetailsContract.InteractorContract {
     private MovieDBApi mMovieDBApi;
     private VideosResult mVideoResult;
     private ReviewResult mReviewResult;
-    private Video firstTrailer;
+    private Video mFirstTrailer;
+    private boolean mFavourite;
 
     public DetailsInteractor(MovieDBApi movieDBApi, Movie movie) {
         mMovieDBApi = movieDBApi;
@@ -46,20 +47,31 @@ public class DetailsInteractor implements DetailsContract.InteractorContract {
 
     @Override
     public Video getTrailer() {
-        if (firstTrailer == null) {
+        if (mFirstTrailer == null) {
             if (mVideoResult != null) {
                 List<Video> videos = mVideoResult.getResults();
                 if (videos != null && !videos.isEmpty()) {
-                    firstTrailer = videos.get(0);
+                    mFirstTrailer = videos.get(0);
                 }
             }
         }
-        return firstTrailer;
+        return mFirstTrailer;
     }
 
     @Override
     public ReviewResult getReview() {
         return mReviewResult;
+    }
+
+    //TODO: content provider
+    @Override
+    public void setFavourite() {
+        mFavourite = !mFavourite;
+    }
+
+    @Override
+    public boolean isFavourite() {
+        return mFavourite;
     }
 
 }

@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -37,6 +40,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     private View mPlayTrailerView;
     private TextView mReviewSize;
     private View mReviewView;
+    private MenuItem favItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +88,27 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.details, menu);
+        favItem = menu.getItem(0);
+        mPresenter.onCreateMenu();
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.fav) {
+            mPresenter.onFavouriteClicked();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void setReviewSize(String size) {
         mReviewSize.setText(size);
     }
@@ -92,5 +117,15 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     public void showLoading() {
         mProgress.setVisibility(View.VISIBLE);
         mContentView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setFavourite(boolean favourite) {
+        if (favourite) {
+            favItem.setIcon(R.drawable.ic_favorite);
+        } else {
+            favItem.setIcon(R.drawable.ic_favorite_border);
+        }
+
     }
 }

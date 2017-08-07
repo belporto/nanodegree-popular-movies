@@ -1,7 +1,7 @@
 package com.porto.isabel.popularmovies.screens.details.presentation;
 
-import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
+import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -37,6 +37,17 @@ public class DetailsPresenter implements DetailsContract.PresenterContract {
     public void onShowReviewClicked() {
 
         mRouter.openReviewsScreen(mInteractor.getReview());
+    }
+
+    @Override
+    public void onFavouriteClicked() {
+        mInteractor.setFavourite();
+        mView.setFavourite(mInteractor.isFavourite());
+    }
+
+    @Override
+    public void onCreateMenu() {
+        mView.setFavourite(mInteractor.isFavourite());
     }
 
     private Subscription subscribeGetScreenContent() {
