@@ -1,12 +1,14 @@
 package com.porto.isabel.popularmovies.network;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class MovieResult implements Serializable {
+public class MovieResult implements Parcelable {
 
     @SerializedName("page")
     private Integer page;
@@ -20,6 +22,32 @@ public class MovieResult implements Serializable {
     @SerializedName("results")
     private List<Movie> results;
 
+
+    protected MovieResult(Parcel in) {
+        results = in.createTypedArrayList(Movie.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(results);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<MovieResult> CREATOR = new Creator<MovieResult>() {
+        @Override
+        public MovieResult createFromParcel(Parcel in) {
+            return new MovieResult(in);
+        }
+
+        @Override
+        public MovieResult[] newArray(int size) {
+            return new MovieResult[size];
+        }
+    };
 
     public Integer getPage() {
         return page;
