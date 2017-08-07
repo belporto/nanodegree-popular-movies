@@ -13,17 +13,17 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-public class MoviesPresenter implements MoviesContract.PresenterContract {
+public class MoviesPresenter implements MoviesContract.Presenter {
 
     private static final String TAG = MoviesPresenter.class.getSimpleName();
     private static final String BUNDLE_SORT_BY = "BUNDLE_SORT_BY";
-    private final MoviesContract.ViewContract mView;
-    private final MoviesContract.InteractorContract mInteractor;
-    private final MoviesContract.RouterContract mRouter;
+    private final MoviesContract.View mView;
+    private final MoviesContract.Interactor mInteractor;
+    private final MoviesContract.Router mRouter;
     private CompositeSubscription compositeSubscription;
 
 
-    public MoviesPresenter(MoviesContract.ViewContract view, MoviesContract.InteractorContract interactor, MoviesContract.RouterContract router) {
+    public MoviesPresenter(MoviesContract.View view, MoviesContract.Interactor interactor, MoviesContract.Router router) {
         mView = view;
         mInteractor = interactor;
         mRouter = router;

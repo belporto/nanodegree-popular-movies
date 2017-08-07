@@ -7,7 +7,7 @@ import com.porto.isabel.popularmovies.screens.details.presentation.DetailsActivi
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.screens.movies.MoviesContract;
 
-public class MoviesRouter implements MoviesContract.RouterContract {
+public class MoviesRouter implements MoviesContract.Router {
 
     private final Activity mActivity;
 

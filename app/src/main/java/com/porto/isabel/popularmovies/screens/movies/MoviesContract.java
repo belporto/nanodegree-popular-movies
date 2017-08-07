@@ -11,7 +11,7 @@ import rx.Observable;
 
 public interface MoviesContract {
 
-    interface PresenterContract {
+    interface Presenter {
 
         void onCreate(Bundle savedInstanceState);
 
@@ -28,7 +28,7 @@ public interface MoviesContract {
         void onRefresh();
     }
 
-    interface ViewContract {
+    interface View {
 
         void showMovies(List<Movie> movies);
 
@@ -39,7 +39,7 @@ public interface MoviesContract {
         void showSortByOptions(SortBy sortBy);
     }
 
-    interface InteractorContract {
+    interface Interactor {
         Observable<List<Movie>> getMovies();
 
         void setSortBy(SortBy sortBy);
@@ -47,7 +47,7 @@ public interface MoviesContract {
         SortBy getSortBy();
     }
 
-    interface RouterContract {
+    interface Router {
         void showDetails(Movie movie);
     }
 }

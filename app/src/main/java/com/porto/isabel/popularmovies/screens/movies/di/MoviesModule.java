@@ -22,26 +22,26 @@ public class MoviesModule {
 
     @Provides
     @MoviesScope
-    public MoviesContract.ViewContract provideView() {
+    public MoviesContract.View provideView() {
         return mActivity;
     }
 
     @Provides
     @MoviesScope
-    public MoviesContract.PresenterContract providePresenter(MoviesContract.ViewContract view,
-            MoviesContract.InteractorContract interactor, MoviesContract.RouterContract router) {
+    public MoviesContract.Presenter providePresenter(MoviesContract.View view,
+                                                     MoviesContract.Interactor interactor, MoviesContract.Router router) {
         return new MoviesPresenter(view, interactor, router);
     }
 
     @Provides
     @MoviesScope
-    public MoviesContract.InteractorContract provideInteractor(MovieDBApi movieDBApi) {
+    public MoviesContract.Interactor provideInteractor(MovieDBApi movieDBApi) {
         return new MoviesInteractor(movieDBApi);
     }
 
     @Provides
     @MoviesScope
-    public MoviesContract.RouterContract provideRouter() {
+    public MoviesContract.Router provideRouter() {
         return new MoviesRouter(mActivity);
     }
 

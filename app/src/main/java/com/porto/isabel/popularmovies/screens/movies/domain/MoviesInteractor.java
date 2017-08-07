@@ -9,7 +9,7 @@ import java.util.List;
 
 import rx.Observable;
 
-public class MoviesInteractor implements MoviesContract.InteractorContract {
+public class MoviesInteractor implements MoviesContract.Interactor {
 
 
     private MovieDBApi mMovieDBApi;

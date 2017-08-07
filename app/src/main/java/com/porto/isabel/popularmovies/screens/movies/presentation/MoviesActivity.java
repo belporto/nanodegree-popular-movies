@@ -29,11 +29,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class MoviesActivity extends AppCompatActivity implements MoviesContract.ViewContract, MoviesAdapter.MoviesAdapterOnClickHandler {
+public class MoviesActivity extends AppCompatActivity implements MoviesContract.View, MoviesAdapter.MoviesAdapterOnClickHandler {
 
     private static final String TAG = MoviesActivity.class.getSimpleName();
     @Inject
-    MoviesContract.PresenterContract mPresenter;
+    MoviesContract.Presenter mPresenter;
 
     private RecyclerView mRecyclerView;
     private MoviesAdapter mMoviesAdapter;
