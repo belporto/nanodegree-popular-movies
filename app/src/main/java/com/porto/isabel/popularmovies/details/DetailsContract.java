@@ -1,9 +1,9 @@
 package com.porto.isabel.popularmovies.details;
 
+import com.porto.isabel.popularmovies.details.domain.ScreenContent;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.model.moviedb.Video;
-
-import java.util.List;
+import com.porto.isabel.popularmovies.network.ReviewResult;
 
 import rx.Observable;
 
@@ -14,11 +14,15 @@ public interface DetailsContract {
         void onCreate();
 
         void onPlayTrailerClicked();
+
+        void onShowReviewClicked();
     }
 
     interface ViewContract {
 
         void init(Movie movie);
+
+        void setReviewSize(String size);
 
         void showLoading();
     }
@@ -27,13 +31,17 @@ public interface DetailsContract {
 
         Movie getMovie();
 
-        Observable<List<Video>> getVideos();
+        Observable<ScreenContent> getScreenContent();
 
         Video getTrailer();
+
+        ReviewResult getReview();
     }
 
     interface Router {
 
         void openYoutubeVideo(String id);
+
+        void openReviewsScreen(ReviewResult review);
     }
 }

@@ -35,6 +35,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     private ProgressBar mProgress;
     private View mContentView;
     private View mPlayTrailerView;
+    private TextView mReviewSize;
+    private View mReviewView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
         mProgress = (ProgressBar) findViewById(R.id.details_loading);
         mContentView = findViewById(R.id.details_content);
         mPlayTrailerView = findViewById(R.id.details_play_trailer);
+        mReviewView = findViewById(R.id.details_show_review);
+        mReviewSize = (TextView) findViewById(R.id.details_review_size);
+
         mPlayTrailerView.setOnClickListener(v -> mPresenter.onPlayTrailerClicked());
+        mReviewView.setOnClickListener(v -> mPresenter.onShowReviewClicked());
 
         mPresenter.onCreate();
     }
@@ -75,6 +81,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
 
         mProgress.setVisibility(View.GONE);
         mContentView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setReviewSize(String size) {
+        mReviewSize.setText(size);
     }
 
     @Override

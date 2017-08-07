@@ -22,6 +22,13 @@ public class ReviewResult implements Parcelable {
     @SerializedName("results")
     private List<Review> results;
 
+    public Integer getTotalResults() {
+        return totalResults;
+    }
+
+    public List<Review> getResults() {
+        return results;
+    }
 
     @Override
     public int describeContents() {

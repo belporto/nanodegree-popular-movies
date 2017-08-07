@@ -25,7 +25,7 @@ public class DetailsPresenter implements DetailsContract.PresenterContract {
 
     @Override
     public void onCreate() {
-        compositeSubscription.add(subscribeGetVideos());
+        compositeSubscription.add(subscribeGetScreenContent());
     }
 
     @Override
@@ -33,14 +33,21 @@ public class DetailsPresenter implements DetailsContract.PresenterContract {
         mRouter.openYoutubeVideo(mInteractor.getTrailer().getKey());
     }
 
-    private Subscription subscribeGetVideos() {
-        return mInteractor.getVideos()
+    @Override
+    public void onShowReviewClicked() {
+
+        mRouter.openReviewsScreen(mInteractor.getReview());
+    }
+
+    private Subscription subscribeGetScreenContent() {
+        return mInteractor.getScreenContent()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(mView::showLoading)
-                .subscribe(videos -> {
+                .subscribe(screenContent -> {
                     Movie movie = mInteractor.getMovie();
                     mView.init(movie);
+                    mView.setReviewSize(screenContent.getReviewResult().getTotalResults().toString());
                 });
 
 
