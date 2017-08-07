@@ -29,6 +29,7 @@ public class DetailsRouter implements DetailsContract.Router {
     @Override
     public void openReviewsScreen(ReviewResult review) {
         Intent intent = new Intent(mActivity, ReviewActivity.class);
+        intent.putExtra(ReviewActivity.EXTRA_REVIEW_RESULT, review);
         mActivity.startActivity(intent);
     }
 }
