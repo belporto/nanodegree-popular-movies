@@ -5,6 +5,7 @@ import com.porto.isabel.popularmovies.details.domain.DetailsInteractor;
 import com.porto.isabel.popularmovies.details.presentation.DetailsActivity;
 import com.porto.isabel.popularmovies.details.presentation.DetailsPresenter;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
+import com.porto.isabel.popularmovies.network.MovieDBApi;
 
 import dagger.Module;
 import dagger.Provides;
@@ -36,8 +37,8 @@ public class DetailsModule {
 
     @Provides
     @DetailsScope
-    public DetailsContract.InteractorContract provideInteractor() {
-        return new DetailsInteractor(mMovie);
+    public DetailsContract.InteractorContract provideInteractor(MovieDBApi movieDBApi) {
+        return new DetailsInteractor(movieDBApi, mMovie);
     }
 
 }
