@@ -5,12 +5,12 @@ import com.porto.isabel.popularmovies.model.moviedb.Video;
 import com.porto.isabel.popularmovies.network.MovieDBApi;
 import com.porto.isabel.popularmovies.network.ReviewResult;
 import com.porto.isabel.popularmovies.network.VideosResult;
+import com.porto.isabel.popularmovies.repository.FavouritesRepository;
 import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 
 import java.util.List;
 
 import rx.Observable;
-import rx.functions.Func2;
 
 public class DetailsInteractor implements DetailsContract.InteractorContract {
 
@@ -19,11 +19,12 @@ public class DetailsInteractor implements DetailsContract.InteractorContract {
     private VideosResult mVideoResult;
     private ReviewResult mReviewResult;
     private Video mFirstTrailer;
-    private boolean mFavourite;
+    private FavouritesRepository mFavRepo;
 
-    public DetailsInteractor(MovieDBApi movieDBApi, Movie movie) {
+    public DetailsInteractor(MovieDBApi movieDBApi, Movie movie, FavouritesRepository favouritesRepository) {
         mMovieDBApi = movieDBApi;
         mMovie = movie;
+        mFavRepo = favouritesRepository;
     }
 
     @Override
@@ -34,13 +35,10 @@ public class DetailsInteractor implements DetailsContract.InteractorContract {
     @Override
     public Observable<ScreenContent> getScreenContent() {
 
-        return Observable.zip(mMovieDBApi.getVideos(mMovie.getId()), mMovieDBApi.getReviews(mMovie.getId()), new Func2<VideosResult, ReviewResult, ScreenContent>() {
-            @Override
-            public ScreenContent call(VideosResult videosResult, ReviewResult reviewResult) {
-                mVideoResult = videosResult;
-                mReviewResult = reviewResult;
-                return new ScreenContent(videosResult, reviewResult);
-            }
+        return Observable.zip(mMovieDBApi.getVideos(mMovie.getId()), mMovieDBApi.getReviews(mMovie.getId()), (videosResult, reviewResult) -> {
+            mVideoResult = videosResult;
+            mReviewResult = reviewResult;
+            return new ScreenContent(videosResult, reviewResult);
         });
     }
 
@@ -63,15 +61,19 @@ public class DetailsInteractor implements DetailsContract.InteractorContract {
         return mReviewResult;
     }
 
-    //TODO: content provider
     @Override
     public void setFavourite() {
-        mFavourite = !mFavourite;
+        boolean isFav = mFavRepo.isFavourite(mMovie);
+        if (isFav) {
+            mFavRepo.deleteFavourite(mMovie);
+        } else {
+            mFavRepo.addFavourite(mMovie);
+        }
     }
 
     @Override
     public boolean isFavourite() {
-        return mFavourite;
+        return mFavRepo.isFavourite(mMovie);
     }
 
 }

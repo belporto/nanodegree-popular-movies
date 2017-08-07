@@ -1,12 +1,13 @@
 package com.porto.isabel.popularmovies.screens.details.di;
 
+import com.porto.isabel.popularmovies.model.moviedb.Movie;
+import com.porto.isabel.popularmovies.network.MovieDBApi;
+import com.porto.isabel.popularmovies.repository.FavouritesRepository;
 import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 import com.porto.isabel.popularmovies.screens.details.domain.DetailsInteractor;
 import com.porto.isabel.popularmovies.screens.details.presentation.DetailsActivity;
 import com.porto.isabel.popularmovies.screens.details.presentation.DetailsPresenter;
 import com.porto.isabel.popularmovies.screens.details.presentation.DetailsRouter;
-import com.porto.isabel.popularmovies.model.moviedb.Movie;
-import com.porto.isabel.popularmovies.network.MovieDBApi;
 
 import dagger.Module;
 import dagger.Provides;
@@ -44,8 +45,8 @@ public class DetailsModule {
 
     @Provides
     @DetailsScope
-    public DetailsContract.InteractorContract provideInteractor(MovieDBApi movieDBApi) {
-        return new DetailsInteractor(movieDBApi, mMovie);
+    public DetailsContract.InteractorContract provideInteractor(MovieDBApi movieDBApi, FavouritesRepository favouritesRepository) {
+        return new DetailsInteractor(movieDBApi, mMovie, favouritesRepository);
     }
 
 }
