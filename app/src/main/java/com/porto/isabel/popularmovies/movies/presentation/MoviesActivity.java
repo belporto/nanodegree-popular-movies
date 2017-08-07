@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,7 +31,7 @@ import javax.inject.Inject;
 
 public class MoviesActivity extends AppCompatActivity implements MoviesContract.ViewContract, MoviesAdapter.MoviesAdapterOnClickHandler {
 
-    private static final int NUMBER_OF_COLUMNS = 3;
+    private static final String TAG = MoviesActivity.class.getSimpleName();
     @Inject
     MoviesContract.PresenterContract mPresenter;
 
@@ -165,6 +166,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
 
     @Override
     public void onClick(Movie movie) {
+        Log.d(TAG, "Movie clicked - " + movie.getId());
         mPresenter.onMovieClicked(movie);
     }
 

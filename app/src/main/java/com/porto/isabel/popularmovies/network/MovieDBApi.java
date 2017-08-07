@@ -47,6 +47,10 @@ public class MovieDBApi {
         return mService.getVideos(movieId, getApiKey());
     }
 
+    public Observable<ReviewResult> getReviews(Integer movieId) {
+        return mService.getReviews(movieId, getApiKey());
+    }
+
     public String getApiKey() {
         String apiKey = "";
         try {

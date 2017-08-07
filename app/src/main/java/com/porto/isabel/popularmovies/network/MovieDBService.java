@@ -15,4 +15,7 @@ public interface MovieDBService {
 
     @GET("movie/{id}/videos")
     Observable<VideosResult> getVideos(@Path("id") int id, @Query("api_key") String apiKey);
+
+    @GET("movie/{id}/reviews")
+    Observable<ReviewResult> getReviews(@Path("id") int id, @Query("api_key") String apiKey);
 }
