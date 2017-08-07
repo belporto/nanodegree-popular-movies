@@ -1,7 +1,5 @@
 package com.porto.isabel.popularmovies.details.presentation;
 
-import android.util.Log;
-
 import com.porto.isabel.popularmovies.details.DetailsContract;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 
@@ -14,26 +12,38 @@ public class DetailsPresenter implements DetailsContract.PresenterContract {
 
     private final DetailsContract.ViewContract mView;
     private final DetailsContract.InteractorContract mInteractor;
+    private final DetailsContract.Router mRouter;
     private CompositeSubscription compositeSubscription;
 
 
-    public DetailsPresenter(DetailsContract.ViewContract view, DetailsContract.InteractorContract interactor) {
+    public DetailsPresenter(DetailsContract.ViewContract view, DetailsContract.InteractorContract interactor, DetailsContract.Router router) {
         mView = view;
         mInteractor = interactor;
+        mRouter = router;
         compositeSubscription = new CompositeSubscription();
     }
 
     @Override
     public void onCreate() {
-        Movie movie = mInteractor.getMovie();
-        mView.init(movie);
         compositeSubscription.add(subscribeGetVideos());
     }
 
+    @Override
+    public void onPlayTrailerClicked() {
+        mRouter.openYoutubeVideo(mInteractor.getTrailer().getKey());
+    }
+
     private Subscription subscribeGetVideos() {
-        return mInteractor.getVideos().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(videos -> {
-            Log.d("TAG", "videos - " + videos);
-        });
+        return mInteractor.getVideos()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(mView::showLoading)
+                .subscribe(videos -> {
+                    Movie movie = mInteractor.getMovie();
+                    mView.init(movie);
+                });
+
+
     }
 
 

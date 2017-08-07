@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -30,6 +32,9 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     private TextView mSynopsisTextView;
     private RatingBar mUserRatingBar;
     private CollapsingToolbarLayout collapsingToolbar;
+    private ProgressBar mProgress;
+    private View mContentView;
+    private View mPlayTrailerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,10 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
         mReleaseDateTextView = (TextView) findViewById(R.id.details_release_date);
         mSynopsisTextView = (TextView) findViewById(R.id.details_synopsis);
         mUserRatingBar = (RatingBar) findViewById(R.id.details_user_rating);
+        mProgress = (ProgressBar) findViewById(R.id.details_loading);
+        mContentView = findViewById(R.id.details_content);
+        mPlayTrailerView = findViewById(R.id.details_play_trailer);
+        mPlayTrailerView.setOnClickListener(v -> mPresenter.onPlayTrailerClicked());
 
         mPresenter.onCreate();
     }
@@ -63,5 +72,14 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
         mReleaseDateTextView.setText(movie.getReleaseDate());
         mUserRatingBar.setRating(movie.getVoteAverage().floatValue() / 2);
         collapsingToolbar.setTitle(movie.getTitle());
+
+        mProgress.setVisibility(View.GONE);
+        mContentView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showLoading() {
+        mProgress.setVisibility(View.VISIBLE);
+        mContentView.setVisibility(View.GONE);
     }
 }

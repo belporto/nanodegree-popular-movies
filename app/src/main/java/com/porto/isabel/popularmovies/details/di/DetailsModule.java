@@ -4,6 +4,7 @@ import com.porto.isabel.popularmovies.details.DetailsContract;
 import com.porto.isabel.popularmovies.details.domain.DetailsInteractor;
 import com.porto.isabel.popularmovies.details.presentation.DetailsActivity;
 import com.porto.isabel.popularmovies.details.presentation.DetailsPresenter;
+import com.porto.isabel.popularmovies.details.presentation.DetailsRouter;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.network.MovieDBApi;
 
@@ -30,9 +31,15 @@ public class DetailsModule {
 
     @Provides
     @DetailsScope
+    public DetailsContract.Router provideRouter() {
+        return new DetailsRouter(mActivity);
+    }
+
+    @Provides
+    @DetailsScope
     public DetailsContract.PresenterContract providePresenter(DetailsContract.ViewContract view,
-            DetailsContract.InteractorContract interactor) {
-        return new DetailsPresenter(view, interactor);
+                                                              DetailsContract.InteractorContract interactor, DetailsContract.Router router) {
+        return new DetailsPresenter(view, interactor, router);
     }
 
     @Provides

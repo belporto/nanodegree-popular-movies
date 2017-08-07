@@ -14,6 +14,7 @@ public class DetailsInteractor implements DetailsContract.InteractorContract {
 
     private Movie mMovie;
     private MovieDBApi mMovieDBApi;
+    private List<Video> mVideos;
 
     public DetailsInteractor(MovieDBApi movieDBApi, Movie movie) {
         mMovieDBApi = movieDBApi;
@@ -27,7 +28,15 @@ public class DetailsInteractor implements DetailsContract.InteractorContract {
 
     @Override
     public Observable<List<Video>> getVideos() {
-        return mMovieDBApi.getVideos(mMovie.getId()).map(VideosResult::getResults);
+        return mMovieDBApi.getVideos(mMovie.getId()).map(VideosResult::getResults).doOnNext(videos -> mVideos = videos);
+    }
+
+    @Override
+    public Video getTrailer() {
+        if (mVideos != null && !mVideos.isEmpty()) {
+            return mVideos.get(0);
+        }
+        return null;
     }
 
 }

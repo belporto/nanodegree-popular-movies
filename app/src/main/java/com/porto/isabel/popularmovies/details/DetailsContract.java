@@ -12,11 +12,15 @@ public interface DetailsContract {
     interface PresenterContract {
 
         void onCreate();
+
+        void onPlayTrailerClicked();
     }
 
     interface ViewContract {
 
         void init(Movie movie);
+
+        void showLoading();
     }
 
     interface InteractorContract {
@@ -24,5 +28,12 @@ public interface DetailsContract {
         Movie getMovie();
 
         Observable<List<Video>> getVideos();
+
+        Video getTrailer();
+    }
+
+    interface Router {
+
+        void openYoutubeVideo(String id);
     }
 }
