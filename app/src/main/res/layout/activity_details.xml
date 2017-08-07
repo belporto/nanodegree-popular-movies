@@ -59,8 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:padding="@dimen/default_padding">
+                android:padding="@dimen/default_padding"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -131,6 +131,46 @@
                     android:layout_height="1dp"
                     android:background="@color/primary_text" />
 
+                <LinearLayout
+                    android:id="@+id/details_show_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padding_small"
+                    android:paddingTop="@dimen/padding_small">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/check_description"
+                        app:srcCompat="@drawable/ic_comment" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_weight="1"
+                        android:text="@string/show_reviews"
+                        android:textColor="@color/primary_text"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/details_review_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="@color/primary_text"
+                        android:textSize="14sp"
+                        tools:text="500" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/primary_text" />
+
 
             </LinearLayout>
 
@@ -139,7 +179,7 @@
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_gravity="center"
-                android:visibility="visible" />
+                android:visibility="gone" />
         </FrameLayout>
 
     </android.support.v4.widget.NestedScrollView>
