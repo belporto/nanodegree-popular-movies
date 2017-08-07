@@ -56,10 +56,6 @@ public class Movie implements Parcelable {
         return posterPath;
     }
 
-    public Boolean getAdult() {
-        return adult;
-    }
-
     public String getOverview() {
         return overview;
     }
@@ -68,20 +64,8 @@ public class Movie implements Parcelable {
         return releaseDate;
     }
 
-    public List<Integer> getGenreIds() {
-        return genreIds;
-    }
-
     public Integer getId() {
         return id;
-    }
-
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    public String getOriginalLanguage() {
-        return originalLanguage;
     }
 
     public String getTitle() {
@@ -92,20 +76,36 @@ public class Movie implements Parcelable {
         return backdropPath;
     }
 
-    public Double getPopularity() {
-        return popularity;
-    }
-
-    public Integer getVoteCount() {
-        return voteCount;
-    }
-
-    public Boolean getVideo() {
-        return video;
-    }
-
     public Double getVoteAverage() {
         return voteAverage;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setVoteAverage(Double voteAverage) {
+        this.voteAverage = voteAverage;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
     }
 
     @Override

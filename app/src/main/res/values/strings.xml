@@ -13,4 +13,5 @@
     <string name="play_trailer">Play Trailer</string>
     <string name="show_reviews">Show Reviews</string>
     <string name="title_activity_review">User Reviews</string>
+    <string name="favourites">Favorites</string>
 </resources>

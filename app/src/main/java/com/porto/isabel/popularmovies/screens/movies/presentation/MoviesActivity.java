@@ -112,15 +112,23 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
 
         View mostPopular = sheetView.findViewById(R.id.most_popular);
         View topRated = sheetView.findViewById(R.id.top_rated);
+        View fav = sheetView.findViewById(R.id.fav);
         View mostPopularCheck = sheetView.findViewById(R.id.most_popular_check);
         View topRatedCheck = sheetView.findViewById(R.id.top_rated_check);
+        View favCheck = sheetView.findViewById(R.id.fav_check);
 
         if (sortBy == SortBy.MOST_POPULAR) {
             mostPopularCheck.setVisibility(View.VISIBLE);
             topRatedCheck.setVisibility(View.INVISIBLE);
-        } else {
+            favCheck.setVisibility(View.INVISIBLE);
+        } else if (sortBy == SortBy.TOP_RATED) {
             mostPopularCheck.setVisibility(View.INVISIBLE);
             topRatedCheck.setVisibility(View.VISIBLE);
+            favCheck.setVisibility(View.INVISIBLE);
+        } else {
+            mostPopularCheck.setVisibility(View.INVISIBLE);
+            topRatedCheck.setVisibility(View.INVISIBLE);
+            favCheck.setVisibility(View.VISIBLE);
         }
 
         mostPopular.setOnClickListener(v -> {
@@ -131,6 +139,12 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         topRated.setOnClickListener(v ->
         {
             mPresenter.onSortOptionClicked(SortBy.TOP_RATED);
+            bottomSheetDialog.dismiss();
+        });
+
+        fav.setOnClickListener(v ->
+        {
+            mPresenter.onSortOptionClicked(SortBy.FAVOURITES);
             bottomSheetDialog.dismiss();
         });
 

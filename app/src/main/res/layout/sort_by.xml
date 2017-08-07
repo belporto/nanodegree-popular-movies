@@ -34,9 +34,9 @@
             android:id="@+id/most_popular_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/check_description"
             android:visibility="invisible"
-            app:srcCompat="@drawable/ic_check"
-            android:contentDescription="@string/check_description" />
+            app:srcCompat="@drawable/ic_check" />
 
     </LinearLayout>
 
@@ -60,9 +60,35 @@
             android:id="@+id/top_rated_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/check_description"
             android:visibility="invisible"
-            app:srcCompat="@drawable/ic_check"
-            android:contentDescription="@string/check_description" />
+            app:srcCompat="@drawable/ic_check" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/favourites"
+            android:textColor="@color/primary_text"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/fav_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/check_description"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_check" />
 
     </LinearLayout>
 

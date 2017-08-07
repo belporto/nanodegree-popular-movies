@@ -28,6 +28,8 @@ public class MoviesDbHelper extends SQLiteOpenHelper {
                         MoviesContract.FavouritesEntry.COLUMN_RELEASE_DATE + " TEXT ," +
                         MoviesContract.FavouritesEntry.COLUMN_VOTE_AVERAGE + " REAL , " +
                         MoviesContract.FavouritesEntry.COLUMN_OVERVIEW + " TEXT , " +
+                        MoviesContract.FavouritesEntry.COLUMN_POSTER_PATH + " TEXT , " +
+                        MoviesContract.FavouritesEntry.COLUMN_BACKDROP_PATH + " TEXT , " +
 
                         " UNIQUE (" + MoviesContract.FavouritesEntry._ID + ") ON CONFLICT REPLACE);";
 
