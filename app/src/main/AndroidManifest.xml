@@ -33,6 +33,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".screens.movies.presentation.MoviesActivity" />
         </activity>
+
+        <activity
+            android:name=".screens.review.presentation.ReviewActivity"
+            android:label="@string/title_activity_review"
+            android:parentActivityName=".screens.details.presentation.DetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".screens.details.presentation.DetailsActivity" />
+        </activity>
     </application>
 
 </manifest>

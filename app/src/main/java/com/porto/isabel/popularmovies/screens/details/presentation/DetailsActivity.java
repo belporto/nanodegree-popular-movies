@@ -12,11 +12,11 @@ import android.widget.TextView;
 
 import com.porto.isabel.popularmovies.AppApplication;
 import com.porto.isabel.popularmovies.R;
-import com.porto.isabel.popularmovies.screens.details.DetailsContract;
-import com.porto.isabel.popularmovies.details.di.DaggerDetailsComponent;
-import com.porto.isabel.popularmovies.screens.details.di.DetailsModule;
 import com.porto.isabel.popularmovies.di.AppComponent;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
+import com.porto.isabel.popularmovies.screens.details.DetailsContract;
+import com.porto.isabel.popularmovies.screens.details.di.DaggerDetailsComponent;
+import com.porto.isabel.popularmovies.screens.details.di.DetailsModule;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;

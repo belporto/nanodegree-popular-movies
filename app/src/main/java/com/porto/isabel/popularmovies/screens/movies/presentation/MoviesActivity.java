@@ -20,7 +20,7 @@ import com.porto.isabel.popularmovies.R;
 import com.porto.isabel.popularmovies.di.AppComponent;
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.screens.movies.MoviesContract;
-import com.porto.isabel.popularmovies.movies.di.DaggerMoviesComponent;
+import com.porto.isabel.popularmovies.screens.movies.di.DaggerMoviesComponent;
 import com.porto.isabel.popularmovies.screens.movies.di.MoviesModule;
 import com.porto.isabel.popularmovies.screens.movies.domain.SortBy;
 import com.porto.isabel.popularmovies.screens.movies.presentation.adapter.MoviesAdapter;

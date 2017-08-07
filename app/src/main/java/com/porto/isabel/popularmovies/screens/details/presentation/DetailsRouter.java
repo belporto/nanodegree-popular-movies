@@ -5,8 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 import com.porto.isabel.popularmovies.network.ReviewResult;
+import com.porto.isabel.popularmovies.screens.details.DetailsContract;
+import com.porto.isabel.popularmovies.screens.review.presentation.ReviewActivity;
 
 public class DetailsRouter implements DetailsContract.Router {
 
@@ -27,6 +28,7 @@ public class DetailsRouter implements DetailsContract.Router {
 
     @Override
     public void openReviewsScreen(ReviewResult review) {
-
+        Intent intent = new Intent(mActivity, ReviewActivity.class);
+        mActivity.startActivity(intent);
     }
 }
