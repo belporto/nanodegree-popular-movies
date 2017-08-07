@@ -9,4 +9,5 @@
     <string name="error_description">Error Image</string>
     <string name="poster_description">Poster Image</string>
     <string name="check_description">Check Image</string>
+    <string name="play_trailer">Play Trailer</string>
 </resources>
