@@ -1,5 +1,6 @@
 package com.porto.isabel.popularmovies.screens.movies.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -32,6 +33,7 @@ import javax.inject.Inject;
 public class MoviesActivity extends AppCompatActivity implements MoviesContract.View, MoviesAdapter.MoviesAdapterOnClickHandler {
 
     private static final String TAG = MoviesActivity.class.getSimpleName();
+    public static final int REQUEST_CODE = 101;
     @Inject
     MoviesContract.Presenter mPresenter;
 
@@ -203,5 +205,13 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         int scalingFactor = 120;
         return (int) (dpWidth / scalingFactor);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            mPresenter.onActivityResult();
+        }
     }
 }

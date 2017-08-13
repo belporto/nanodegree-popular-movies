@@ -23,8 +23,8 @@ public class MoviesInteractor implements MoviesContract.Interactor {
     }
 
     @Override
-    public Observable<List<Movie>> getMovies(SortBy sortBy) {
-        if (sortBy == mSortBy && mMovies != null && !mMovies.isEmpty()) {
+    public Observable<List<Movie>> getMovies(SortBy sortBy, boolean updateCache) {
+        if (!updateCache && sortBy == mSortBy && mMovies != null && !mMovies.isEmpty()) {
             return Observable.just(mMovies);
         } else {
             mMovies = null;

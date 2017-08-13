@@ -32,4 +32,5 @@ public class DetailsRouter implements DetailsContract.Router {
         intent.putExtra(ReviewActivity.EXTRA_REVIEW_RESULT, review);
         mActivity.startActivity(intent);
     }
+
 }

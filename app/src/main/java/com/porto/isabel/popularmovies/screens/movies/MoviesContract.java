@@ -26,6 +26,8 @@ public interface MoviesContract {
         void onMovieClicked(Movie movie);
 
         void onRefresh();
+
+        void onActivityResult();
     }
 
     interface View {
@@ -42,7 +44,7 @@ public interface MoviesContract {
     }
 
     interface Interactor {
-        Observable<List<Movie>> getMovies(SortBy sortBy);
+        Observable<List<Movie>> getMovies(SortBy sortBy, boolean updateCache);
 
         void setSortBy(SortBy sortBy);
 

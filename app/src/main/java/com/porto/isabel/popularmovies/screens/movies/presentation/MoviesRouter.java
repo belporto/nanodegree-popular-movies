@@ -19,6 +19,6 @@ public class MoviesRouter implements MoviesContract.Router {
     public void showDetails(Movie movie) {
         Intent intent = new Intent(mActivity, DetailsActivity.class);
         intent.putExtra(DetailsActivity.EXTRA_MOVIE, movie);
-        mActivity.startActivity(intent);
+        mActivity.startActivityForResult(intent, MoviesActivity.REQUEST_CODE);
     }
 }

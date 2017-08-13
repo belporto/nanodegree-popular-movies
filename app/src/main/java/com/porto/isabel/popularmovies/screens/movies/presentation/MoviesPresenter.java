@@ -44,10 +44,10 @@ public class MoviesPresenter implements MoviesContract.Presenter {
             List<Movie> movies = savedInstanceState.getParcelableArrayList(BUNDLE_MOVIES);
             mInteractor.setMovies(movies);
         }
-        compositeSubscription.add(subscribeGetPopularMovies(mInteractor.getSortBy(), false));
+        compositeSubscription.add(subscribeGetPopularMovies(mInteractor.getSortBy(), false, false));
     }
 
-    private Subscription subscribeGetPopularMovies(SortBy sortBy, boolean onRefresh) {
+    private Subscription subscribeGetPopularMovies(SortBy sortBy, boolean onRefresh, boolean updateCache) {
         return Observable.just(null)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .doOnNext(aVoid -> {
@@ -56,7 +56,7 @@ public class MoviesPresenter implements MoviesContract.Presenter {
                     }
                 })
                 .observeOn(Schedulers.io())
-                .switchMap(aVoid -> mInteractor.getMovies(sortBy))
+                .switchMap(aVoid -> mInteractor.getMovies(sortBy, updateCache))
                 .doOnNext(mInteractor::setMovies)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(movies -> {
@@ -85,7 +85,7 @@ public class MoviesPresenter implements MoviesContract.Presenter {
 
     @Override
     public void onSortOptionClicked(SortBy sortBy) {
-        compositeSubscription.add(subscribeGetPopularMovies(sortBy, false));
+        compositeSubscription.add(subscribeGetPopularMovies(sortBy, false, false));
     }
 
     @Override
@@ -103,6 +103,13 @@ public class MoviesPresenter implements MoviesContract.Presenter {
 
     @Override
     public void onRefresh() {
-        compositeSubscription.add(subscribeGetPopularMovies(mInteractor.getSortBy(), true));
+        compositeSubscription.add(subscribeGetPopularMovies(mInteractor.getSortBy(), true, false));
+    }
+
+    @Override
+    public void onActivityResult() {
+        if (mInteractor.getSortBy() == SortBy.FAVOURITES) {
+            compositeSubscription.add(subscribeGetPopularMovies(mInteractor.getSortBy(), false, true));
+        }
     }
 }
