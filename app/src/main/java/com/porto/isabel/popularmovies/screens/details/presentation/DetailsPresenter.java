@@ -1,6 +1,9 @@
 package com.porto.isabel.popularmovies.screens.details.presentation;
 
+import android.os.Bundle;
+
 import com.porto.isabel.popularmovies.screens.details.DetailsContract;
+import com.porto.isabel.popularmovies.screens.details.domain.ScreenContent;
 
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -9,6 +12,7 @@ import rx.subscriptions.CompositeSubscription;
 
 public class DetailsPresenter implements DetailsContract.PresenterContract {
 
+    private static final String BUNDLE_SCREEN_CONTENT = "BUNDLE_SCREEN_CONTENT";
     private final DetailsContract.ViewContract mView;
     private final DetailsContract.InteractorContract mInteractor;
     private final DetailsContract.Router mRouter;
@@ -23,7 +27,12 @@ public class DetailsPresenter implements DetailsContract.PresenterContract {
     }
 
     @Override
-    public void onCreate() {
+    public void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            ScreenContent screenContent = savedInstanceState.getParcelable(BUNDLE_SCREEN_CONTENT);
+            mInteractor.setScreenContent(screenContent);
+        }
+
         mView.init(mInteractor.getMovie());
         compositeSubscription.add(subscribeGetScreenContent());
     }
@@ -50,15 +59,18 @@ public class DetailsPresenter implements DetailsContract.PresenterContract {
         mView.setFavourite(mInteractor.isFavourite());
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(BUNDLE_SCREEN_CONTENT, mInteractor.getScreenContent());
+    }
+
     private Subscription subscribeGetScreenContent() {
-        return mInteractor.getScreenContent()
+        return mInteractor.loadScreenContent()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(mView::showLoading)
-                .subscribe(screenContent -> {
-                            mView.showTrailerAndReview(screenContent.getReviewResult()
-                                    .getTotalResults().toString());
-                        },
+                .subscribe(screenContent -> mView.showTrailerAndReview(screenContent.getReviewResult()
+                                .getTotalResults().toString()),
                         throwable -> mView.showError());
 
 

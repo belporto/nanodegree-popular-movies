@@ -1,9 +1,11 @@
 package com.porto.isabel.popularmovies.screens.details;
 
-import com.porto.isabel.popularmovies.screens.details.domain.ScreenContent;
+import android.os.Bundle;
+
 import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.model.moviedb.Video;
 import com.porto.isabel.popularmovies.network.ReviewResult;
+import com.porto.isabel.popularmovies.screens.details.domain.ScreenContent;
 
 import rx.Observable;
 
@@ -11,7 +13,7 @@ public interface DetailsContract {
 
     interface PresenterContract {
 
-        void onCreate();
+        void onCreate(Bundle savedInstanceState);
 
         void onPlayTrailerClicked();
 
@@ -20,6 +22,8 @@ public interface DetailsContract {
         void onFavouriteClicked();
 
         void onCreateMenu();
+
+        void onSaveInstanceState(Bundle outState);
     }
 
     interface ViewContract {
@@ -39,7 +43,9 @@ public interface DetailsContract {
 
         Movie getMovie();
 
-        Observable<ScreenContent> getScreenContent();
+        Observable<ScreenContent> loadScreenContent();
+
+        ScreenContent getScreenContent();
 
         Video getTrailer();
 
@@ -48,6 +54,8 @@ public interface DetailsContract {
         void setFavourite();
 
         boolean isFavourite();
+
+        void setScreenContent(ScreenContent screenContent);
     }
 
     interface Router {

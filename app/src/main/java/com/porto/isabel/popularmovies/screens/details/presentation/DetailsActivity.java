@@ -70,7 +70,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
         mPlayTrailerView.setOnClickListener(v -> mPresenter.onPlayTrailerClicked());
         mReviewView.setOnClickListener(v -> mPresenter.onShowReviewClicked());
 
-        mPresenter.onCreate();
+        mPresenter.onCreate(savedInstanceState);
     }
 
     @Override
@@ -132,5 +132,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     @Override
     public void showError() {
         mProgress.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mPresenter.onSaveInstanceState(outState);
     }
 }

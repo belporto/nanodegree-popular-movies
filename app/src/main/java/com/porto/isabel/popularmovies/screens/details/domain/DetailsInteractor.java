@@ -33,8 +33,10 @@ public class DetailsInteractor implements DetailsContract.InteractorContract {
     }
 
     @Override
-    public Observable<ScreenContent> getScreenContent() {
-
+    public Observable<ScreenContent> loadScreenContent() {
+        if (mVideoResult != null && mReviewResult != null) {
+            return Observable.just(new ScreenContent(mVideoResult, mReviewResult));
+        }
         return Observable.zip(mMovieDBApi.getVideos(mMovie.getId()), mMovieDBApi.getReviews(mMovie.getId()), (videosResult, reviewResult) -> {
             mVideoResult = videosResult;
             mReviewResult = reviewResult;
@@ -74,6 +76,23 @@ public class DetailsInteractor implements DetailsContract.InteractorContract {
     @Override
     public boolean isFavourite() {
         return mFavRepo.isFavourite(mMovie);
+    }
+
+    @Override
+    public void setScreenContent(ScreenContent screenContent) {
+        if (screenContent != null) {
+            mVideoResult = screenContent.getVideosResult();
+            mReviewResult = screenContent.getReviewResult();
+        }
+    }
+
+    @Override
+    public ScreenContent getScreenContent() {
+        if (mVideoResult != null) {
+            return new ScreenContent(mVideoResult, mReviewResult);
+        } else {
+            return null;
+        }
     }
 
 }
