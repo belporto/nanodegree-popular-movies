@@ -40,11 +40,15 @@ public interface MoviesContract {
     }
 
     interface Interactor {
-        Observable<List<Movie>> getMovies();
+        Observable<List<Movie>> getMovies(SortBy sortBy);
 
         void setSortBy(SortBy sortBy);
 
         SortBy getSortBy();
+
+        void setMovies(List<Movie> movies);
+
+        List<Movie> getMovies();
     }
 
     interface Router {

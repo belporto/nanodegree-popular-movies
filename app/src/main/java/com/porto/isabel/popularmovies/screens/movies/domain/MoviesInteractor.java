@@ -12,25 +12,30 @@ import rx.Observable;
 
 public class MoviesInteractor implements MoviesContract.Interactor {
 
-
     private final FavouritesRepository mFavRepo;
     private MovieDBApi mMovieDBApi;
-    private SortBy mSortBy;
+    private SortBy mSortBy = SortBy.MOST_POPULAR;
+    private List<Movie> mMovies;
 
     public MoviesInteractor(MovieDBApi movieDBApi, FavouritesRepository favouritesRepository) {
         mMovieDBApi = movieDBApi;
-        mSortBy = SortBy.MOST_POPULAR; //Default Value
         mFavRepo = favouritesRepository;
     }
 
     @Override
-    public Observable<List<Movie>> getMovies() {
-        if (mSortBy == SortBy.MOST_POPULAR) {
-            return mMovieDBApi.getPopularMovies().map(MovieResult::getResults);
-        } else if (mSortBy == SortBy.TOP_RATED) {
-            return mMovieDBApi.getTopRatedMovies().map(MovieResult::getResults);
+    public Observable<List<Movie>> getMovies(SortBy sortBy) {
+        if (sortBy == mSortBy && mMovies != null && !mMovies.isEmpty()) {
+            return Observable.just(mMovies);
         } else {
-            return Observable.defer(() -> Observable.just(mFavRepo.getFavourites()));
+            mMovies = null;
+            mSortBy = sortBy;
+            if (sortBy == SortBy.MOST_POPULAR) {
+                return mMovieDBApi.getPopularMovies().map(MovieResult::getResults);
+            } else if (sortBy == SortBy.TOP_RATED) {
+                return mMovieDBApi.getTopRatedMovies().map(MovieResult::getResults);
+            } else {
+                return Observable.defer(() -> Observable.just(mFavRepo.getFavourites()));
+            }
         }
     }
 
@@ -42,5 +47,15 @@ public class MoviesInteractor implements MoviesContract.Interactor {
     @Override
     public SortBy getSortBy() {
         return mSortBy;
+    }
+
+    @Override
+    public void setMovies(List<Movie> movies) {
+        mMovies = movies;
+    }
+
+    @Override
+    public List<Movie> getMovies() {
+        return mMovies;
     }
 }
