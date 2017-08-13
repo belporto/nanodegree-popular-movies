@@ -59,7 +59,13 @@ public class MoviesPresenter implements MoviesContract.Presenter {
                 .switchMap(aVoid -> mInteractor.getMovies(sortBy))
                 .doOnNext(mInteractor::setMovies)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(mView::showMovies,
+                .subscribe(movies -> {
+                            if (movies.isEmpty()) {
+                                mView.showEmptyState();
+                            } else {
+                                mView.showMovies(movies);
+                            }
+                        },
                         throwable -> {
                             Log.e(TAG, "Error getting movies", throwable);
                             mView.showError();

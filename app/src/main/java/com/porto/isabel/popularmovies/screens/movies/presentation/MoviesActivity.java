@@ -38,6 +38,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
     private RecyclerView mRecyclerView;
     private MoviesAdapter mMoviesAdapter;
     private View mErrorView;
+    private View mEmptyView;
     private ProgressBar mProgressBar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -59,6 +60,7 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
         mRecyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
         mProgressBar = (ProgressBar) findViewById(R.id.movies_loading);
         mErrorView = findViewById(R.id.movies_error);
+        mEmptyView = findViewById(R.id.movies_empty);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.movies_swipe_refresh);
 
         int noOfColumns = calculateNoOfColumns();
@@ -84,25 +86,28 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
     @Override
     public void showMovies(List<Movie> movies) {
         mMoviesAdapter.setData(movies);
-        mProgressBar.setVisibility(View.INVISIBLE);
+        mProgressBar.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
-        mErrorView.setVisibility(View.INVISIBLE);
+        mErrorView.setVisibility(View.GONE);
+        mEmptyView.setVisibility(View.GONE);
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void showProgress() {
         mProgressBar.setVisibility(View.VISIBLE);
-        mRecyclerView.setVisibility(View.INVISIBLE);
-        mErrorView.setVisibility(View.INVISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+        mErrorView.setVisibility(View.GONE);
+        mEmptyView.setVisibility(View.GONE);
     }
 
     @Override
     public void showError() {
-        mProgressBar.setVisibility(View.INVISIBLE);
-        mRecyclerView.setVisibility(View.INVISIBLE);
+        mProgressBar.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.GONE);
         mErrorView.setVisibility(View.VISIBLE);
         mSwipeRefreshLayout.setRefreshing(false);
+        mEmptyView.setVisibility(View.GONE);
     }
 
     @Override
@@ -151,6 +156,15 @@ public class MoviesActivity extends AppCompatActivity implements MoviesContract.
 
         bottomSheetDialog.setContentView(sheetView);
         bottomSheetDialog.show();
+    }
+
+    @Override
+    public void showEmptyState() {
+        mProgressBar.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.GONE);
+        mErrorView.setVisibility(View.GONE);
+        mSwipeRefreshLayout.setRefreshing(false);
+        mEmptyView.setVisibility(View.VISIBLE);
     }
 
     @Override

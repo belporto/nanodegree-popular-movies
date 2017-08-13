@@ -37,6 +37,8 @@ public interface MoviesContract {
         void showError();
 
         void showSortByOptions(SortBy sortBy);
+
+        void showEmptyState();
     }
 
     interface Interactor {
