@@ -83,8 +83,6 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
         mUserRatingBar.setRating(movie.getVoteAverage().floatValue() / 2);
         collapsingToolbar.setTitle(movie.getTitle());
 
-        mProgress.setVisibility(View.GONE);
-        mContentView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -109,14 +107,16 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     }
 
     @Override
-    public void setReviewSize(String size) {
+    public void showTrailerAndReview(String size) {
         mReviewSize.setText(size);
+        mProgress.setVisibility(View.INVISIBLE);
+        mContentView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showLoading() {
         mProgress.setVisibility(View.VISIBLE);
-        mContentView.setVisibility(View.GONE);
+        mContentView.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -127,5 +127,10 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
             favItem.setIcon(R.drawable.ic_favorite_border);
         }
 
+    }
+
+    @Override
+    public void showError() {
+        mProgress.setVisibility(View.INVISIBLE);
     }
 }

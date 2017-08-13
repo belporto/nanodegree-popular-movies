@@ -1,6 +1,5 @@
 package com.porto.isabel.popularmovies.screens.details.presentation;
 
-import com.porto.isabel.popularmovies.model.moviedb.Movie;
 import com.porto.isabel.popularmovies.screens.details.DetailsContract;
 
 import rx.Subscription;
@@ -25,6 +24,7 @@ public class DetailsPresenter implements DetailsContract.PresenterContract {
 
     @Override
     public void onCreate() {
+        mView.init(mInteractor.getMovie());
         compositeSubscription.add(subscribeGetScreenContent());
     }
 
@@ -56,10 +56,10 @@ public class DetailsPresenter implements DetailsContract.PresenterContract {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(mView::showLoading)
                 .subscribe(screenContent -> {
-                    Movie movie = mInteractor.getMovie();
-                    mView.init(movie);
-                    mView.setReviewSize(screenContent.getReviewResult().getTotalResults().toString());
-                });
+                            mView.showTrailerAndReview(screenContent.getReviewResult()
+                                    .getTotalResults().toString());
+                        },
+                        throwable -> mView.showError());
 
 
     }

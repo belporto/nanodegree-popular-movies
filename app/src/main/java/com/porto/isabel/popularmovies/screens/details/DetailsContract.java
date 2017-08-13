@@ -26,11 +26,13 @@ public interface DetailsContract {
 
         void init(Movie movie);
 
-        void setReviewSize(String size);
+        void showTrailerAndReview(String size);
 
         void showLoading();
 
         void setFavourite(boolean favourite);
+
+        void showError();
     }
 
     interface InteractorContract {
@@ -43,7 +45,6 @@ public interface DetailsContract {
 
         ReviewResult getReview();
 
-        //TODO: content provider
         void setFavourite();
 
         boolean isFavourite();
